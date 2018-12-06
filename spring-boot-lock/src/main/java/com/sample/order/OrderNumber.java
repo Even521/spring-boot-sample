@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class OrderNumber implements OrderService  {
-    private int i=0;
+    private int i=100;
 
     @Override
     public   String getOrderNumber(Thread thread){
-        i++;
+        i--;
         String s=thread.getName()+"-"+thread.getId()+"-"+i;
         System.out.println(s);
         return s;
