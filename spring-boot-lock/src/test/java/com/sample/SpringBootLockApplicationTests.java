@@ -1,5 +1,6 @@
 package com.sample;
 
+import com.sample.mysql.lock.service.ITestLockService;
 import com.sample.order.OrderService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,31 +11,50 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SpringBootLockApplicationTests {
+    private final static int START=0;
+    private final static int END=100;
     @Autowired
     private OrderService orderService;
-    private final static int start=0;
-    private final static int end=100;
+    @Autowired
+    private ITestLockService iTestLockService;
 
 
+
+
+    /**
+     * 测试没有加锁引起的线程安全问题
+     */
     @Test
     public void getOrderNumberTest() {
-            for (int i=start;i<end;i++) {
-                new Thread(()->{
+            for (int i=START;i< END;i++) {
+                new Thread(()-> {
                     orderService.getOrderNumber(Thread.currentThread());
                 }).start();
             }
     }
 
     /**
-     * 用Synchronized 方法锁住
+     *
+     * 用Synchronized 保证线程安全，缺点:如果是微服务集群的方式就不能保证数据唯一
      */
     @Test
     public void getSynchronizedTest() {
-        for (int i=start;i<end;i++) {
+        for (int i=START;i< END;i++) {
             new Thread(()->{
                 orderService.getSynchronized(Thread.currentThread());
             }).start();
         }
+    }
+
+    @Test
+    public void mysqlLockTest(){
+        new Thread(()->{
+            iTestLockService.lock("1","2","com.sample.mysql.lock.service.impl.lock()");
+        }).start();
+        new Thread(()->{
+            iTestLockService.lock("1","2","com.sample.mysql.lock.service.impl.lock()");
+        }).start();
+
     }
 
 
