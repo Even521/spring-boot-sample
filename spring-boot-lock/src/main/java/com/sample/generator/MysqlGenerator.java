@@ -60,7 +60,7 @@ public class MysqlGenerator {
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("kcypt_2018");
+        dsc.setPassword("12344");
         mpg.setDataSource(dsc);
 
         // 包配置
