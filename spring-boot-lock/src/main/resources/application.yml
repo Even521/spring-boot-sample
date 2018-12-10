@@ -8,7 +8,7 @@ spring:
 
 mybatis-plus:
   check-config-location: true
-  mapperLocations: classpath:/mapper1/*.xml
+  mapperLocations: classpath:/mapper/*.xml
   #实体扫描，多个package用逗号或者分号分隔
   typeAliasesPackage: com.sample.mysql.lock.entity
   global-config:

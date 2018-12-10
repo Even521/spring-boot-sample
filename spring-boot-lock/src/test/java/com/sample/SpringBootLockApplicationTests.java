@@ -1,5 +1,6 @@
 package com.sample;
 
+import com.sample.mysql.lock.mapper.TestLockMapper;
 import com.sample.mysql.lock.service.ITestLockService;
 import com.sample.order.OrderService;
 import org.junit.Test;
@@ -7,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -48,12 +50,15 @@ public class SpringBootLockApplicationTests {
 
     @Test
     public void mysqlLockTest(){
-        new Thread(()->{
+        //iTestLockService.lock("1","2","com.sample.mysql.lock.service.impl.lock()");
+        for (int i=START;i< END;i++) {
+                iTestLockService.lock("1","2","com.sample.mysql.lock.service.impl.lock()");
+        }
+
+
+     /*   new Thread(()->{
             iTestLockService.lock("1","2","com.sample.mysql.lock.service.impl.lock()");
-        }).start();
-        new Thread(()->{
-            iTestLockService.lock("1","2","com.sample.mysql.lock.service.impl.lock()");
-        }).start();
+        }).start();*/
 
     }
 

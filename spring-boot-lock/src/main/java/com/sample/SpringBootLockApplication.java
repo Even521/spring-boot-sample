@@ -2,7 +2,6 @@ package com.sample;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
 /**
  * Created by Administrator on 2018/12/7 0007.
@@ -10,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @author even
  */
 @SpringBootApplication
-@ComponentScan(basePackages ={"com.sample.*"})
+
 public class SpringBootLockApplication {
 
     public static void main(String[] args) {
