@@ -22,10 +22,16 @@
         <mybatisplus.version>3.0.6</mybatisplus.version>
         <alibaba.druid>1.1.10</alibaba.druid>
         <alibaba.fastjson>1.2.47</alibaba.fastjson>
+        <even.redis.lock>1.0-SNAPSHOT</even.redis.lock>
 
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.even</groupId>
+            <artifactId>spring-boot-redis-lock-starter</artifactId>
+            <version>${even.redis.lock}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
