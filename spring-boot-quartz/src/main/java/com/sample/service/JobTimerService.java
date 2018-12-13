@@ -28,7 +28,6 @@ public class JobTimerService {
         this.buildJobTimer();
     }
 
-
     public void buildJobTimer()throws Exception{
         //1.设置时间
         long startAtTime = System.currentTimeMillis() + 1000 * 60;
