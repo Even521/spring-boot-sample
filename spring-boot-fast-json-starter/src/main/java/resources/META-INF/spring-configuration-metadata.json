@@ -1,0 +1,81 @@
+{
+  "properties": [
+    {
+      "name": "spring.fastjson.supportedMediaTypes",
+      "type": "java.lang.String",
+      "description": "Description for spring.fastjson.supportedMediaTypes.",
+      "defaultValue": "application/json;charset=UTF-8"
+    },
+    {
+      "name": "spring.fastjson.config.serializerFeatures",
+      "type": "com.alibaba.fastjson.serializer.SerializerFeature",
+      "description": "Description for spring.fastjson.config.serializerFeatures."
+    },
+    {
+      "name": "spring.fastjson.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Whether to enable FastJsonHttpMessageConverter.",
+      "defaultValue": true
+    },
+    {
+      "name": "spring.fastjson.config.dateFormat",
+      "type": "java.lang.String",
+      "description": "Date serialization format."
+    }
+  ],
+  "hints": [
+    {
+      "name": "spring.fastjson.supportedMediaTypes",
+      "values": [
+        {
+          "value": "application/json;charset=UTF-8"
+        },
+        {
+          "value": "text/html"
+        },
+        {
+          "value": "text/plain"
+        },
+        {
+          "value": "text/xml"
+        }
+      ]
+    },
+    {
+      "name": "spring.fastjson.config.serializerFeatures",
+      "providers": [
+        {
+          "name": "handle-as",
+          "parameters": {
+            "target": "com.alibaba.fastjson.serializer.SerializerFeature"
+          }
+        }
+      ]
+    },
+    {
+      "name": "spring.fastjson.enabled",
+      "values": [
+        {
+          "value": true
+        },
+        {
+          "value": false
+        }
+      ]
+    },
+    {
+      "name": "spring.fastjson.config.dateFormat",
+      "values": [
+        {
+          "value": "yyyy-MM-dd"
+        },
+        {
+          "value": "yyyy-MM-dd HH:mm:ss"
+        },
+        {
+          "value": "HH:mm:ss"
+        }
+      ]
+    }
+  ]
+}
