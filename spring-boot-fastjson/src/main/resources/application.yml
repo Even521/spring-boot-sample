@@ -1,0 +1,5 @@
+spring:
+  fastjson:
+    enabled: true
+    config:
+      dateFormat: yyyy-MM-dd HH:mm:ss
