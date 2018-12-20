@@ -1,21 +1,11 @@
 package com.sample;
 
-import com.even.DefaultRedisLock;
-import com.even.EnableRedisLock;
-import com.even.annotation.RedisLock;
-import com.even.annotation.RedisLockParam;
-import com.even.annotation.RedisLockRequest;
+import com.even.fastjson.DefaultRedisLock;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import javax.annotation.Resource;
-import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Created by Administrator on 2018/12/12 0012.

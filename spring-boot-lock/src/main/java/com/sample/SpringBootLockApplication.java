@@ -1,6 +1,6 @@
 package com.sample;
 
-import com.even.EnableRedisLock;
+import com.even.fastjson.EnableRedisLock;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
