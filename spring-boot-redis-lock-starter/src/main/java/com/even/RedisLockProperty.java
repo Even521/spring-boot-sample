@@ -1,4 +1,4 @@
-package com.even;
+package com.even.fastjson;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

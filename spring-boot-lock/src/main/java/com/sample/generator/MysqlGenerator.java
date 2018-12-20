@@ -49,7 +49,7 @@ public class MysqlGenerator {
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
-        gc.setOutputDir(projectPath + "/spring-boot-lock/src/main/java");
+        gc.setOutputDir(projectPath + "/spring-boot-transaction/src/main/java");
         gc.setAuthor("even");
         gc.setOpen(false);
         mpg.setGlobalConfig(gc);
@@ -61,7 +61,7 @@ public class MysqlGenerator {
 
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("12344");
+        dsc.setPassword("kcypt_2018");
         mpg.setDataSource(dsc);
 
         // 包配置
@@ -82,7 +82,7 @@ public class MysqlGenerator {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输入文件名称
-                return projectPath + "/spring-boot-lock/src/main/resources/mapper/" + pc.getModuleName()
+                return projectPath + "/spring-boot-transaction/src/main/resources/mapper/" + pc.getModuleName()
                         + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
             }
         });

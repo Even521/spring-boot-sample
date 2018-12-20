@@ -1,4 +1,4 @@
-package com.even;
+package com.even.fastjson;
 
 import org.springframework.context.annotation.Import;
 

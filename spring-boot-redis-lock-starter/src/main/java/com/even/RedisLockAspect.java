@@ -1,8 +1,8 @@
-package com.even;
+package com.even.fastjson;
 
-import com.even.annotation.RedisLock;
-import com.even.annotation.RedisLockParam;
-import com.even.annotation.RedisLockRequest;
+import com.even.fastjson.annotation.RedisLock;
+import com.even.fastjson.annotation.RedisLockParam;
+import com.even.fastjson.annotation.RedisLockRequest;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
@@ -43,7 +43,7 @@ public class RedisLockAspect {
     @Autowired
     private DefaultRedisLock defaultRedisLock;
 
-    @Around(value = "@annotation(com.even.annotation.RedisLock)")
+    @Around(value = "@annotation(com.even.fastjson.annotation.RedisLock)")
     public Object around(ProceedingJoinPoint jp) throws Throwable {
         // 获取注解配置的锁key值
         Method method = getMethod(jp);

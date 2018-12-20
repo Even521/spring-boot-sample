@@ -2,3 +2,14 @@
 .gitignore
 .idea/
 spring-boot-sample.iml
+/spring-boot-fast-json-starter/spring-boot-fast-json-starter.iml
+/spring-boot-fast-json-starter/spring-boot-fastjson-starter.iml
+
+spring-boot-fast-json-starter/target/
+spring-boot-fastjson/target/
+spring-boot-lock/target/
+spring-boot-quartz/target/
+spring-boot-redis-lock-starter/target/
+/spring-boot-lock/spring-boot-lock.iml
+/spring-boot-quartz/spring-boot-quartz.iml
+/spring-boot-redis-lock-starter/spring-boot-redis-lock-starter.iml
