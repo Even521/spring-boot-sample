@@ -2,7 +2,7 @@
 我们用spring boot发现会有很多spring-boot-starter-xxx,在实际开发中可能会通过@Bean注解来实现组件的加载，我们希望通过配置文件如application.yml或者application.properties来实现自定义类的加载到spring 容器中去。
 本文采用spring boot版本为2.1.1为例。
 官方文档建议我们自定义组件命名最好采用xxx-spring-boot-starter [命名规则参考](https://docs.spring.io/spring-boot/docs/2.1.1.RELEASE/reference/htmlsingle/#boot-features-custom-starter-naming)。
-##2.准备知识
+## 2.准备知识
 知识点 | 学习网址|特性
 ---|---|---
 @Configuration| [配置元数据](https://docs.spring.io/spring/docs/5.1.3.RELEASE/spring-framework-reference/core.html#beans-factory-metadata)|spring 3.0开始<br>引入该注解，<br>@Configuration作用<br>在用于描述类、<br>接口(包括注解类型) 或enum声明。<br>初始化配置类我们知道有2种方式:<br>1.通过META-INF/<br>spring.factories文件来实现<br>org.springframework.boot<br>.autoconfigure.EnableAuto<br>Configuration<br>=<br>\com.even.fastjson.<br>FastJsonAutoConfiguration<br> (spring boot采用SPI的约定)。<br>2.采用扫包的方式<br>scanBasePackages实现。
@@ -11,7 +11,7 @@
 @ConditionalOnProperty|[@Conditional<br>OnProperty<br>来控制Configuration<br>是否生效](https://docs.spring.io/spring-boot/docs/2.1.1.RELEASE/reference/htmlsingle/#boot-features-developing-auto-configuration)|通过其两个属性name以及havingValue来实现的，其中name用来从application.properties中读取某个属性值。<br>如果该值为空，则返回false;如果值不为空，则将该值与havingValue指定的值进行比较，如果一样则返回true;否则返回false。 <br>如果返回值为false，则该configuration不生效；为true则生效。                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
 @Conditional<br>OnWebApplication|[Web应用程序条件](https://docs.spring.io/spring-boot/docs/2.1.1.RELEASE/reference/htmlsingle/#boot-features-developing-auto-configuration)|让配置取决于<br>应用程序是否是一个“Web应用程序”被包括在内。<br>Web应用程序是使用<br>Spring WebApplicationContext，<br>定义session范围或具有的任何应用程序StandardServletEnvironment。
 fastJson|[fastJson](https://github.com/alibaba/fastjson)| FastJson是一个Java库，可用于将Java对象转换为其JSON表示。 它还可用于将JSON字符串转换为等效的Java对象。<br> FastJson可以处理任意Java对象，包括您没有源代码的预先存在的对象。                                                                                                                                                                                   
-##3.依赖
+## 3.依赖
 ```$maven
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -40,7 +40,7 @@ fastJson|[fastJson](https://github.com/alibaba/fastjson)| FastJson是一个Java�
       <version>${fast.json}</version>
     </dependency>
 ```
-##4.代码实现
+## 4.代码实现
 1.创建FastJsonProperties类,主要是放默认的fastJson配置文件。
 ```$java
 @ConditionalOnClass({JSON.class})
@@ -230,7 +230,7 @@ public class User {
 }
 ```
 (5)输出结果:{"age":20,"birthday":"2018-12-21","name":"even"}
-##5.资料
+## 5.资料
 - 参考文档:[spring-boot文档](https://docs.spring.io/spring-boot/docs/2.1.1.RELEASE/reference/htmlsingle/)
 - 参考源码:[fastjson-spring-boot-starter](https://github.com/coffee377/spring-boot-starter-fastjson)
 - 笔者源码地址:[spring-boot-fastjson-starter](https://github.com/Even521/spring-boot-sample/tree/master/spring-boot-starter/spring-boot-fastjson-starter)
