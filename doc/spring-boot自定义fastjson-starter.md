@@ -3,7 +3,7 @@
 本文采用spring boot版本为2.1.1为例。
 官方文档建议我们自定义组件命名最好采用xxx-spring-boot-starter [命名规则参考](https://docs.spring.io/spring-boot/docs/2.1.1.RELEASE/reference/htmlsingle/#boot-features-custom-starter-naming)。
 ## 2.准备知识
-知识点 | 学习网址|特性
+知识点|学习网址|特性
 ---|---|---
 @Configuration| [配置元数据](https://docs.spring.io/spring/docs/5.1.3.RELEASE/spring-framework-reference/core.html#beans-factory-metadata)|spring 3.0开始<br>引入该注解，<br>@Configuration作用<br>在用于描述类、<br>接口(包括注解类型) 或enum声明。<br>初始化配置类我们知道有2种方式:<br>1.通过META-INF/<br>spring.factories文件来实现<br>org.springframework.boot<br>.autoconfigure.EnableAuto<br>Configuration<br>=<br>\com.even.fastjson.<br>FastJsonAutoConfiguration<br> (spring boot采用SPI的约定)。<br>2.采用扫包的方式<br>scanBasePackages实现。
 @EnableConfiguration<br>Properties|[注册的属性类](https://docs.spring.io/spring-boot/docs/2.1.1.RELEASE/reference/htmlsingle/#boot-features-external-config-vs-value)|  该注解是用来开启对<br>@ConfigurationProperties注解配置Bean的支持。<br>也就是@EnableConfiguration<br>Properties注解<br>告诉Spring Boot 能支持@ConfigurationProperties。
