@@ -28,6 +28,9 @@ public class FastJsonAutoConfiguration {
     @ConditionalOnProperty(prefix = "spring.fastjson", name = "enabled", havingValue = "true", matchIfMissing = true)
     @ConditionalOnWebApplication
     public HttpMessageConverter<?> httpMessageConverter() {
+        /**
+         * FastJsonHttpMessageConverter转换类
+         */
         FastJsonHttpMessageConverter fastJsonHttpMessageConverter = new FastJsonHttpMessageConverter();
         /*媒体类型*/
         fastJsonHttpMessageConverter.setSupportedMediaTypes(fastJsonProperties.getSupportedMediaTypes());

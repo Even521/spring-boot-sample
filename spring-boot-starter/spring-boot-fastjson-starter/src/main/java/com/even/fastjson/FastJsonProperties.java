@@ -16,12 +16,21 @@ import java.util.List;
 @ConditionalOnClass({JSON.class})
 @ConfigurationProperties(prefix = "spring.fastjson")
 public class FastJsonProperties {
-    private final static String DEFAULT_MEDIA_TYPE = MediaType.APPLICATION_JSON_UTF8_VALUE;
-
+    /**
+     * 默认Content-Type
+     */
+    private final static String DEFAULT_MEDIA_TYPE = "application/json;charset=UTF-8";
+    /**
+     * 是否生效
+     */
     private boolean enabled;
-
+    /**
+     * 默认List<MediaType>
+     */
     private List<MediaType> supportedMediaTypes = MediaType.parseMediaTypes(DEFAULT_MEDIA_TYPE);
-
+    /**
+     * 实例化一个FastJsonConfig对象
+     */
     private FastJsonConfig config = new FastJsonConfig();
 
     public boolean isEnabled() {
