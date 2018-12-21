@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author even
  */
 @SpringBootApplication
-
 public class SpringBootfastJsonApplication {
     public static void main(String[] args) {
         SpringApplication.run(SpringBootfastJsonApplication.class, args);
