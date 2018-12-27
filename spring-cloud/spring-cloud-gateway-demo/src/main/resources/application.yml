@@ -1,0 +1,20 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: spring-cloud-gateway
+logging:
+  level:
+    org.springframwork.cloud.gateway: TRACE
+    org.springframwork.http.service.reactive: DEBUG
+    org.springframwork.web.reactive: DEBUG
+    reactor.ipc.netty: DEBUG
+#spring cloud 开启查看更新的rest api
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        exclude: '*'
