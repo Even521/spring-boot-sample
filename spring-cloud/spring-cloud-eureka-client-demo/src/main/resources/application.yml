@@ -1,0 +1,12 @@
+server:
+  port: 9002
+spring:
+  application:
+    name: app1
+eureka:
+  client:
+    service-url:
+      defaultZone: http://10.10.20.213:9001/eureka/ #注意defaultZone还是驼峰式
+  instance:
+    #true表示将自己IP地址注册到euraka service上
+    prefer-ip-address: true
