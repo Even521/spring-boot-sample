@@ -1,0 +1,14 @@
+auth-server: http://127.0.0.1:9106
+server:
+  port: 9107
+security:
+  oauth2:
+    client:
+      client-id: testclient
+      client-secret: testclient
+      scope: test
+      access-token-uri: ${auth-server}/oauth/token
+      user-authorization-uri: ${auth-server}/oauth/authorize
+      registered-redirect-uri: http://www.baidu.com
+    resource:
+      token-info-uri: ${auth-server}/oauth/check_token
