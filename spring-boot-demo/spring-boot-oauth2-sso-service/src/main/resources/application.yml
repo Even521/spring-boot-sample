@@ -1,0 +1,6 @@
+server:
+  port: 9106
+  servlet:
+    session:
+      cookie:
+        name: OAUTH2SEESION
