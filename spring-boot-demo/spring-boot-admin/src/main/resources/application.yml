@@ -7,7 +7,7 @@ spring:
   application: spring-boot-admin
   profiles:
     active: dev
-  #³öÏÖ´íÎóÊ±, Ö±½ÓÅ×³öÒì³£(±ãÓÚÒì³£Í³Ò»´¦Àí£¬·ñÔò²¶»ñ²»µ½404)
+  #å‡ºç°é”™è¯¯æ—¶, ç›´æ¥æŠ›å‡ºå¼‚å¸¸(ä¾¿äºå¼‚å¸¸ç»Ÿä¸€å¤„ç†ï¼Œå¦åˆ™æ•è·ä¸åˆ°404)
   mvc:
     throw-exception-if-no-handler-found: true
   jackson:

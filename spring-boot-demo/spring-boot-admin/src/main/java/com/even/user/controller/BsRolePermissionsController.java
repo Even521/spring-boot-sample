@@ -4,6 +4,7 @@ package com.even.user.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Controller;
  * @author even
  * @since 2019-01-14
  */
-@Controller
+@RestController
 @RequestMapping("/user/bs-role-permissions")
 public class BsRolePermissionsController {
 
