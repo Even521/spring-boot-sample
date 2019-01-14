@@ -32,8 +32,8 @@ spring:
       connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
 mybatis-plus:
   check-config-location: true #启动时是否检查 MyBatis XML 文件的存在
-  mapper-locations: classpath*:mybatis/*.xml #MyBatis Mapper 所对应的 XML 文件位置
-  type-aliases-package: com.even.entity #扫描实体包
+  mapper-locations: classpath:/mapper/**/*.xml #MyBatis Mapper 所对应的 XML 文件位置
+  type-aliases-package: com.even.**.entity #扫描实体包
   global-config:
     banner: false #不显示banner
     #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
