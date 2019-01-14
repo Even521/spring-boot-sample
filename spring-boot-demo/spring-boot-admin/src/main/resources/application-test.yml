@@ -1,0 +1,53 @@
+logging:
+  file: /logs/${spring.application.name}
+  level:
+    com.even: debug
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      url: jdbc:mysql://127.0.0.1:3306/admin?useUnicode=true&characterEncoding=utf8&useSSL=false
+      username: root
+      password: 123
+      driver-class-name: com.mysql.jdbc.Driver
+      max-active: 100
+      max-wait: 10000
+      initial-size: 5
+      min-idle: 10
+      filters: stat,wall,slf4j
+      filter:
+        stat:
+            log-slow-sql: true
+            slow-sql-millis: 2000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      validation-query: SELECT 1 FROM DUAL
+      validation-query-timeout: 60000
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 100000
+      use-global-data-source-stat: true
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+mybatis-plus:
+  check-config-location: true #启动时是否检查 MyBatis XML 文件的存在
+  mapper-locations: classpath*:mybatis/*.xml #MyBatis Mapper 所对应的 XML 文件位置
+  type-aliases-package: com.even.entity #扫描实体包
+  global-config:
+    banner: false #不显示banner
+    #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+    id-type: ID
+    #字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
+    field-strategy: not_empty
+    #驼峰下划线转换
+    column-underline: true
+    #数据库大写下划线转换
+    capital-mode: true
+    #逻辑删除配置
+    logic-delete-value: 0
+    logic-not-delete-value: 1
+  # 原生配置
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
