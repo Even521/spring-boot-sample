@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author even
  * 实现UserDetailsService
  */
-@Service
+@Service("jwtUserDetailsService")
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true, rollbackFor = Exception.class)
 public class JwtUserDetailsServiceImpl implements UserDetailsService {
     @Autowired

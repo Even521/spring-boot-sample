@@ -6,6 +6,7 @@ import com.even.security.JwtUser;
 import com.even.security.utils.EncryptUtils;
 import com.even.security.utils.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AccountExpiredException;
@@ -33,6 +34,7 @@ public class AuthenticationController {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
+    @Qualifier("jwtUserDetailsService")
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -42,6 +44,7 @@ public class AuthenticationController {
      * @return
      */
     @PostMapping(value = "${jwt.auth.path}")
+
     public ResponseEntity<?> authenticationLogin(@RequestBody AuthorizationUser authorizationUser){
 
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authorizationUser.getUsername());

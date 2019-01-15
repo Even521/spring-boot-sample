@@ -22,6 +22,7 @@
         <mybatisplus.version>3.0.7.1</mybatisplus.version>
         <jjwt.version>0.9.1</jjwt.version>
         <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
+
     </properties>
 
     <dependencies>
@@ -31,6 +32,13 @@
             <artifactId>springfox-swagger2</artifactId>
             <version>${springfox-swagger2.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfox-swagger2.version}</version>
+        </dependency>
+
         <!--lombok插件-->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -90,6 +98,14 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
     </dependencies>
 
