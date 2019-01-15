@@ -7,9 +7,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
-      url: jdbc:mysql://125.69.73.254:33600/admin?useUnicode=true&characterEncoding=utf8&useSSL=false
-      username: root
-      password: kcypt_2018
+      url: jdbc:mysql://125.69.73.259:3300/admin?useUnicode=true&characterEncoding=utf8&useSSL=false
+      username: root1233332321
+      password: 2018333333123
       driver-class-name: com.mysql.jdbc.Driver
       max-active: 100
       max-wait: 10000
