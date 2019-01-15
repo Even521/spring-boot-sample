@@ -20,9 +20,23 @@
         <java.version>1.8</java.version>
         <alibaba.druid>1.1.10</alibaba.druid>
         <mybatisplus.version>3.0.7.1</mybatisplus.version>
+        <jjwt.version>0.9.1</jjwt.version>
+        <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
     </properties>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox-swagger2.version}</version>
+        </dependency>
+        <!--lombok插件-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
 
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -35,7 +49,11 @@
             <version>${mybatisplus.version}</version>
         </dependency>
 
-
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jjwt.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>com.alibaba</groupId>

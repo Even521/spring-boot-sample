@@ -1,10 +1,14 @@
 package com.even.user.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.even.common.validation.ValidationUtil;
 import com.even.user.entity.BsUser;
 import com.even.user.mapper.BsUserMapper;
 import com.even.user.service.IBsUserService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.ValidationUtils;
 
 /**
  * <p>
@@ -17,4 +21,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class BsUserServiceImpl extends ServiceImpl<BsUserMapper, BsUser> implements IBsUserService {
 
+    @Override
+    public BsUser findByName(String name) throws UsernameNotFoundException {
+        LambdaQueryWrapper<BsUser> lambdaQueryWrapper= new LambdaQueryWrapper<>();
+        if(ValidationUtil.isEmail(name)){
+            lambdaQueryWrapper.eq(BsUser::getEmail,name);
+        }else {
+            lambdaQueryWrapper.eq(BsUser::getUserName,name);
+        }
+        return this.baseMapper.selectOne(lambdaQueryWrapper);
+    }
 }
