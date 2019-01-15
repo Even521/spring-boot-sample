@@ -13,3 +13,12 @@ spring:
   jackson:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
+jwt:
+  header: Authorization
+  secret: mySecret
+  expiration: 60000
+  auth:
+    # 授权路径
+    path: /login
+    # 获取用户信息
+    account: /info
