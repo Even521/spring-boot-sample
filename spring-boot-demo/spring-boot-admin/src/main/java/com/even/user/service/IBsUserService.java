@@ -4,6 +4,8 @@ import com.even.user.entity.BsUser;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -20,7 +22,7 @@ public interface IBsUserService extends IService<BsUser> {
      * @param name
      * @return
      */
-    BsUser findByName(@NotNull String name) throws UsernameNotFoundException;
+    BsUser findByName(String name) throws UsernameNotFoundException;
 
 
 }
