@@ -1,6 +1,6 @@
 package com.even.security.utils;
 
-import com.even.common.exception.BadRequestException;
+import com.even.common.exception.DescribeException;
 import com.even.security.JwtUser;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.impl.DefaultClock;
@@ -180,7 +180,7 @@ public class JwtTokenUtil implements Serializable {
         String authToken = request.getHeader(tokenHeader);
 
         if(StringUtils.isEmpty(authToken)||authToken.length()<7){
-            throw new BadRequestException(HttpStatus.FORBIDDEN,"Token令牌无效");
+            throw new DescribeException(400,"Token令牌无效");
         }
 
         final String token = authToken.substring(7);
@@ -188,7 +188,7 @@ public class JwtTokenUtil implements Serializable {
         try {
             username = getUsernameFromToken(token);
         } catch (ExpiredJwtException e){
-            throw new BadRequestException(HttpStatus.UNAUTHORIZED,"Token令牌已过期");
+            throw new DescribeException(401,"Token令牌已过期");
         }
         return username;
     }

@@ -8,6 +8,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2019/1/16 0016.
  *
@@ -19,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 @ApiModel(value = "返回结果集类",description = "系统响应code date message封装类")
-public class Result<T> {
+public class Result<T> implements Serializable {
     /**
      * 状态码
      */
@@ -29,10 +32,20 @@ public class Result<T> {
      * 消息
      */
     @ApiModelProperty(value = "返回消息")
+    @NotNull
     private String message;
     /**
      * 数据
      */
     @ApiModelProperty(value = "返回数据模型类")
     private T data;
+
+    /**
+     * 重写toString方法
+     * @return
+     */
+    public String toString() {
+        return "{code:" + this.getStatus() + ", data:" + this.getData() + ", msg:" + this.getMessage() + "}";
+    }
+
 }
