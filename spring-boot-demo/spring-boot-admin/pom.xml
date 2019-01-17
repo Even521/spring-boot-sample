@@ -22,10 +22,24 @@
         <mybatisplus.version>3.0.7.1</mybatisplus.version>
         <jjwt.version>0.9.1</jjwt.version>
         <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
+        <mapstruct.version>1.2.0.Final</mapstruct.version>
 
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-jdk8</artifactId>
+            <version>${mapstruct.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct-processor -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>${mapstruct.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
         <dependency>
             <groupId>io.springfox</groupId>

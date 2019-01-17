@@ -1,7 +1,9 @@
 package com.even.user.service;
 
+import com.even.user.dto.UserDTO;
 import com.even.user.entity.BsUser;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import javax.validation.constraints.NotBlank;
@@ -23,6 +25,15 @@ public interface IBsUserService extends IService<BsUser> {
      * @return
      */
     BsUser findByName(String name) throws UsernameNotFoundException;
+
+    boolean isNotExit(String name);
+
+    /**
+     * 创建一个新用户
+     * @param user
+     * @return
+     */
+    UserDTO createUser(BsUser user) ;
 
 
 }

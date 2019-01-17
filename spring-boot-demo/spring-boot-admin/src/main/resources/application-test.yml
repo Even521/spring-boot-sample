@@ -30,6 +30,14 @@ spring:
       min-evictable-idle-time-millis: 100000
       use-global-data-source-stat: true
       connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      stat-view-servlet:
+        url-pattern: /druid/*
+        reset-enable: false
+        login-username: admin
+        login-password: 123456
+      web-stat-filter:
+          url-pattern: /*
+          exclusions: "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*"
 mybatis-plus:
   check-config-location: true #启动时是否检查 MyBatis XML 文件的存在
   mapper-locations: classpath:/mapper/**/*.xml #MyBatis Mapper 所对应的 XML 文件位置

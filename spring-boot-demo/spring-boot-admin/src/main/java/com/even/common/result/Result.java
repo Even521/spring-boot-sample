@@ -44,6 +44,7 @@ public class Result<T> implements Serializable {
      * 重写toString方法
      * @return
      */
+    @Override
     public String toString() {
         return "{code:" + this.getStatus() + ", data:" + this.getData() + ", msg:" + this.getMessage() + "}";
     }
