@@ -73,11 +73,11 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
         roleDTOS.stream().forEach(roleDTO -> {
             permissions.addAll(roleDTO.getPermissions());
         });
-        List<GrantedAuthority> list=permissions.stream().map(permissionDTO ->
+        return permissions.stream().map(permissionDTO ->
                 new SimpleGrantedAuthority("ROLE_"+permissionDTO.getPermissionName())
         ).collect(Collectors.toList());
-        System.out.println(list);
-        return list;
+
+
     }
 
 }
