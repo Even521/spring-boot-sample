@@ -2,4 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.even.user.mapper.BsPermissionMapper">
 
+    <select id="findByRoleId" resultType="com.even.user.dto.PermissionDTO">
+        select BS_ROLE_PERMISSIONS.ROLE_ID,
+               BS_ROLE_PERMISSIONS.PERMISSION_ID id,
+               BS_PERMISSION.CREATE_TIME,
+               BS_PERMISSION.ALIAS,
+               BS_PERMISSION.PERMISSION_NAME,
+               BS_PERMISSION.PID
+               from BS_ROLE_PERMISSIONS
+        left join BS_PERMISSION
+        on BS_ROLE_PERMISSIONS.PERMISSION_ID=BS_PERMISSION.ID
+        <where>
+            ${ew.sqlSegment}
+        </where>
+    </select>
 </mapper>

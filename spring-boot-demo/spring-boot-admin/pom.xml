@@ -27,6 +27,12 @@
     </properties>
 
     <dependencies>
+        <!--JDK11删除了 排除了javax.xml.bin-->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.0</version>
+        </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct-jdk8</artifactId>

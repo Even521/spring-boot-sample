@@ -1,4 +1,4 @@
-package com.even.config;
+package com.even.security.config;
 
 import com.even.security.JwtAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,6 +85,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         // AuthenticationTokenFilter will ignore the below paths
         web.ignoring()
+              /*  .antMatchers("/v2/api-docs")//
+                .antMatchers("/swagger-resources/**")//
+                .antMatchers("/swagger-ui.html")//
+                .antMatchers("/configuration/**")//
+                .antMatchers("/webjars/**")//
+                .antMatchers("/public")*/
                 .antMatchers(
                         HttpMethod.POST,
                         authenticationPath

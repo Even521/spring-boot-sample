@@ -3,6 +3,9 @@ package com.even.user.service;
 import com.even.user.entity.BsUserRole;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+import java.util.Set;
+
 /**
  * <p>
  *  服务类

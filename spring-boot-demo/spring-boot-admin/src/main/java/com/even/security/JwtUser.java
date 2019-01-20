@@ -60,7 +60,7 @@ public class JwtUser implements UserDetails {
     /**
      * 权限
      */
-    private final Collection<? extends GrantedAuthority> authorities;
+    private final Collection<? extends GrantedAuthority> roles;
 
     /**
      *  在我们保存权限的时候加上了前缀ROLE_，因此在这里需要处理下数据
@@ -68,11 +68,11 @@ public class JwtUser implements UserDetails {
      */
     @Override
     public Collection getAuthorities() {
-        Set<String> roles = new LinkedHashSet<>();
-        for (GrantedAuthority authority : authorities) {
-            roles.add(authority.getAuthority().substring(5));
+        Set<String> roleSet = new LinkedHashSet<>();
+        for (GrantedAuthority authority : roles) {
+            roleSet.add(authority.getAuthority().substring(5));
         }
-        return roles;
+        return roleSet;
     }
 
     @Override

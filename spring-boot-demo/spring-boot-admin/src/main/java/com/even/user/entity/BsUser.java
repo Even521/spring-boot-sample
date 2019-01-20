@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 /**
@@ -22,6 +23,7 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("BS_USER")
+@ToString
 public class BsUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -67,6 +69,7 @@ public class BsUser implements Serializable {
 
     @TableField("UPDATE_TIME")
     private LocalDateTime updateTime;
+
 
 
 }

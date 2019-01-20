@@ -27,7 +27,7 @@ public class Result<T> implements Serializable {
      * 状态码
      */
     @ApiModelProperty(value = "返回状态")
-    private int status;
+    private int code;
     /**
      * 消息
      */
@@ -46,7 +46,7 @@ public class Result<T> implements Serializable {
      */
     @Override
     public String toString() {
-        return "{code:" + this.getStatus() + ", data:" + this.getData() + ", msg:" + this.getMessage() + "}";
+        return "{code:" + this.getCode() + ", data:" + this.getData() + ", msg:" + this.getMessage() + "}";
     }
 
 }

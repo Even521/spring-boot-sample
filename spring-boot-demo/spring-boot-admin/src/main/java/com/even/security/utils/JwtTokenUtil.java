@@ -119,6 +119,12 @@ public class JwtTokenUtil implements Serializable {
         return doGenerateToken(claims, userDetails.getUsername());
     }
 
+    /**
+     *
+     * @param claims
+     * @param subject
+     * @return
+     */
     private String doGenerateToken(Map<String, Object> claims, String subject) {
         final Date createdDate = clock.now();
         final Date expirationDate = calculateExpirationDate(createdDate);
@@ -138,7 +144,7 @@ public class JwtTokenUtil implements Serializable {
                 && (!isTokenExpired(token) || ignoreTokenExpiration(token));
     }
 
-    public String refreshToken(String token) {
+    public String refreshToken(String token) throws Exception{
         final Date createdDate = clock.now();
         final Date expirationDate = calculateExpirationDate(createdDate);
 

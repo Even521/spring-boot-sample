@@ -32,7 +32,7 @@ public class ResultUtils {
     private static Result resultBuilder(Object object,int code,String message){
         return Result.builder()
                 .data(object)
-                .status(code)
+                .code(code)
                 .message(message).build();
     }
 

@@ -11,7 +11,7 @@ public enum  ExceptionEnum {
     /**
      * 不能为null
      */
-    NULL_ERROR(0,"不能为null"),
+    NULL_ERROR(-1,"不能为null"),
     /**
      * 系统内部错误，请联系管理员
      */

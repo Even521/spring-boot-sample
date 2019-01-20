@@ -11,6 +11,6 @@ import org.mapstruct.ReportingPolicy;
  *
  * @author even
  */
-@Mapper(componentModel = "spring",unmappedTargetPolicy = ReportingPolicy.IGNORE)
+//@Mapper(componentModel = "spring",unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface PermissionMapStruct extends EntityMapStruct<PermissionDTO, BsPermission> {
 }

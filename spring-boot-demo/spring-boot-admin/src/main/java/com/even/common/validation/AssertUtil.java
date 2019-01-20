@@ -22,7 +22,7 @@ public class AssertUtil {
     }
 
     /**
-     * 判断对象不为空
+     * 判断对象不为空,如果为空抛出异常
      * @param o
      * @param message
      */

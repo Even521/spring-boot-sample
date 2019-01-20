@@ -14,10 +14,10 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Setter
 public class AuthorizationUser {
-    @NotBlank
+    @NotBlank(message = "用户名不能为空")
     private String username;
 
-    @NotBlank
+    @NotBlank(message = "密码不能为空")
     private String password;
 
     /**

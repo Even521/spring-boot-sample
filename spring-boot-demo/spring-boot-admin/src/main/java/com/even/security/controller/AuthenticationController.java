@@ -1,10 +1,15 @@
 package com.even.security.controller;
 
+import com.even.common.exception.DescribeException;
+import com.even.common.exception.eum.ExceptionEnum;
+import com.even.common.result.Result;
+import com.even.common.result.ResultUtils;
 import com.even.security.AuthenticationToken;
 import com.even.security.AuthorizationUser;
 import com.even.security.JwtUser;
 import com.even.security.utils.EncryptUtils;
 import com.even.security.utils.JwtTokenUtil;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,6 +21,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.zip.DataFormatException;
 
 /**
  * Created by Administrator on 2019/1/15 0015.
@@ -24,6 +30,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @RequestMapping("auth")
+@Log4j2
 public class AuthenticationController {
     @Value("${jwt.header}")
     private String tokenHeader;
@@ -44,24 +51,21 @@ public class AuthenticationController {
      * @return
      */
     @PostMapping(value = "${jwt.auth.path}")
-
-    public ResponseEntity<?> authenticationLogin(@RequestBody AuthorizationUser authorizationUser){
-
+    public Result<AuthenticationToken> authenticationLogin(@RequestBody AuthorizationUser authorizationUser) {
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authorizationUser.getUsername());
-
-        if(!userDetails.getPassword().equals(EncryptUtils.encryptPassword(authorizationUser.getPassword()))){
-            throw new AccountExpiredException("密码错误");
+        //判断密码
+        if(!userDetails.getPassword().equals(authorizationUser.getPassword())){
+            throw new DescribeException(ExceptionEnum.NULL_ERROR.getCode(),"密码错误");
         }
-
         if(!userDetails.isEnabled()){
-            throw new AccountExpiredException("账号已停用，请联系管理员");
+            throw new DescribeException(ExceptionEnum.NULL_ERROR.getCode(),"账号已停用，请联系管理员");
         }
 
         // 生成令牌
         final String token = jwtTokenUtil.generateToken(userDetails);
 
         // 返回 token
-        return ResponseEntity.ok(new AuthenticationToken(token));
+        return ResultUtils.success(new AuthenticationToken(token));
     }
 
     /**
@@ -70,8 +74,8 @@ public class AuthenticationController {
      * @return
      */
     @GetMapping(value = "${jwt.auth.account}")
-    public ResponseEntity getUserInfo(HttpServletRequest request){
+    public  Result<JwtUser> getUserInfo(HttpServletRequest request){
         JwtUser jwtUser = (JwtUser)userDetailsService.loadUserByUsername(jwtTokenUtil.getUserName(request));
-        return ResponseEntity.ok(jwtUser);
+        return ResultUtils.success(jwtUser);
     }
 }

@@ -2,4 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.even.user.mapper.BsRoleMapper">
 
+    <select id="findByUserId" resultType="com.even.user.dto.RoleDTO">
+        select BS_USER_ROLE.ROLE_ID as id,
+               BS_USER_ROLE.USER_ID,
+               BS_ROLE.ROLE_NAME,
+               BS_ROLE.CREATE_TIME,
+               BS_ROLE.REMARK
+        from
+               BS_USER_ROLE
+        left join
+                   BS_ROLE
+        on BS_USER_ROLE.ROLE_ID=BS_ROLE.ID
+        <where>
+            ${ew.sqlSegment}
+        </where>
+
+    </select>
 </mapper>

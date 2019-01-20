@@ -3,8 +3,11 @@ package com.even.user.dto;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
+import lombok.ToString;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -13,34 +16,38 @@ import java.util.Set;
  * @author even
  */
 @Data
-public class RoleDTO {
+@ToString
+public class RoleDTO implements Serializable {
     private static final long serialVersionUID = 1L;
+    /**
+     * 用户ID
+     */
+    private int userId;
 
     /**
      * 角色ID
      */
-    @TableId("ID")
     private Integer id;
 
     /**
      * 角色名称
      */
-    @TableField("ROLE_NAME")
+
     private String roleName;
 
     /**
      * 角色创建时间
      */
-    @TableField("CREATE_TIME")
+
     private LocalDateTime createTime;
 
     /**
      * 角色备注
      */
-    @TableField("REMARK")
+
     private String remark;
     /**
      * 角色权限
      */
-    private Set<PermissionDTO> permissions;
+    private List<PermissionDTO> permissions;
 }

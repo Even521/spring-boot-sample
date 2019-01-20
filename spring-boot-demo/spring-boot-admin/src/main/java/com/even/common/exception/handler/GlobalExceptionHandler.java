@@ -31,7 +31,7 @@ public class GlobalExceptionHandler {
      * @return
      */
     @ExceptionHandler(DescribeException.class)
-    public Result handleException(DescribeException e){
+    public Result handleDescribeException(DescribeException e){
         // 打印堆栈信息
         log.error(e.getMessage());
         return ResultUtils.error(e.getCode(),e.getMessage());

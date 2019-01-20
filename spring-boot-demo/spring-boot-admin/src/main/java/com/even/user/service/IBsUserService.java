@@ -26,7 +26,19 @@ public interface IBsUserService extends IService<BsUser> {
      */
     BsUser findByName(String name) throws UsernameNotFoundException;
 
-    boolean isNotExit(String name);
+    /**
+     * 查询用户所有角色
+     * @param name
+     * @return
+     */
+    UserDTO findByUserName(String name);
+
+    /**
+     * 不存在
+     * @param name
+     * @return
+     */
+    boolean notExit(String name);
 
     /**
      * 创建一个新用户
