@@ -1,9 +1,8 @@
 package com.even;
 
-import com.even.user.dto.UserDTO;
-import com.even.user.entity.BsUser;
-import com.even.user.service.IBsRoleService;
-import com.even.user.service.IBsUserService;
+import com.even.system.dto.UserDTO;
+import com.even.system.service.IBsRoleService;
+import com.even.system.service.IBsUserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
-import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

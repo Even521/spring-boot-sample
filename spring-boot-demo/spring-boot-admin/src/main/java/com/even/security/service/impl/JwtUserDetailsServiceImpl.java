@@ -2,12 +2,10 @@ package com.even.security.service.impl;
 
 import com.even.common.validation.AssertUtil;
 import com.even.security.JwtUser;
-import com.even.user.dto.PermissionDTO;
-import com.even.user.dto.RoleDTO;
-import com.even.user.dto.UserDTO;
-import com.even.user.entity.BsUser;
-import com.even.user.service.IBsUserService;
-import org.hibernate.validator.constraints.NotEmpty;
+import com.even.system.dto.PermissionDTO;
+import com.even.system.dto.RoleDTO;
+import com.even.system.dto.UserDTO;
+import com.even.system.service.IBsUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -18,8 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.security.Permission;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

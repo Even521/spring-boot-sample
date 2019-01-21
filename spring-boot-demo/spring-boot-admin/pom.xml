@@ -27,6 +27,12 @@
     </properties>
 
     <dependencies>
+        <!--引用自定义fast json start JAR-->
+        <dependency>
+            <groupId>com.even</groupId>
+            <artifactId>spring-boot-fastjson-starter</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <!--JDK11删除了 排除了javax.xml.bin-->
         <dependency>
             <groupId>javax.xml.bind</groupId>

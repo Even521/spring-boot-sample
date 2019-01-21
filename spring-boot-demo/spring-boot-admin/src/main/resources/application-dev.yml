@@ -40,9 +40,15 @@ spring:
         url-pattern: /*
         exclusions: "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*"
 
+  fastjson:
+     enabled: true
+     config:
+       dateFormat: yyyy-MM-dd HH:mm:ss
+
+
 mybatis-plus:
   check-config-location: true #启动时是否检查 MyBatis XML 文件的存在
-  mapper-locations: classpath:/mapper/**/*.xml #MyBatis Mapper 所对应的 XML 文件位置
+  mapper-locations: classpath:/mapper/**/*Mapper.xml #MyBatis Mapper 所对应的 XML 文件位置
   type-aliases-package: com.even.**.entity #扫描实体包
   global-config:
     banner: false #不显示banner
