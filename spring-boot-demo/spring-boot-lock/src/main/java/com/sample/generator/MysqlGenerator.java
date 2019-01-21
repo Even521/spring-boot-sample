@@ -48,18 +48,20 @@ public class MysqlGenerator {
 
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
+        //获取当前项目文件根路径
         String projectPath = System.getProperty("user.dir");
-        gc.setOutputDir(projectPath + "/spring-boot-transaction/src/main/java");
+        System.out.println(projectPath);
+        gc.setOutputDir(projectPath + "/spring-boot-admin/src/main/java");
         gc.setAuthor("even");
         gc.setOpen(false);
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://211.149.205.3:33600/test?useUnicode=true&useSSL=false&characterEncoding=utf8");
+        dsc.setUrl("jdbc:mysql://10.10.20.100:33600/admin?useUnicode=true&characterEncoding=utf8&useSSL=false");
         // dsc.setSchemaName("public");
 
-        dsc.setDriverName("com.mysql.jdbc.Driver");
+        dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("kcypt_2018");
         mpg.setDataSource(dsc);
@@ -67,7 +69,7 @@ public class MysqlGenerator {
         // 包配置
         PackageConfig pc = new PackageConfig();
         pc.setModuleName(scanner("模块名"));
-        pc.setParent("com.sample");
+        pc.setParent("com.even");
         mpg.setPackageInfo(pc);
 
         // 自定义配置
@@ -82,7 +84,7 @@ public class MysqlGenerator {
             @Override
             public String outputFile(TableInfo tableInfo) {
                 // 自定义输入文件名称
-                return projectPath + "/spring-boot-transaction/src/main/resources/mapper/" + pc.getModuleName()
+                return projectPath + "/spring-boot-admin/src/main/resources/mapper/" + pc.getModuleName()
                         + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
             }
         });
