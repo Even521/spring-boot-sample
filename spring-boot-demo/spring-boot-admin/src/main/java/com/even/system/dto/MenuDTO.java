@@ -3,6 +3,7 @@ package com.even.system.dto;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
  *
  * @author even
  */
+@Data
 public class MenuDTO  {
 
     private Integer id;
