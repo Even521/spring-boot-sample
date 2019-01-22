@@ -6,10 +6,13 @@ import com.even.system.dto.MenuDTO;
 import com.even.system.dto.RoleDTO;
 import com.even.system.entity.BsMenu;
 import com.even.system.mapper.BsMenuMapper;
+import com.even.system.mapstruct.MenuMapStruct;
 import com.even.system.service.IBsMenuService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.*;
 
 /**
@@ -22,6 +25,8 @@ import java.util.*;
  */
 @Service
 public class BsMenuServiceImpl extends ServiceImpl<BsMenuMapper, BsMenu> implements IBsMenuService {
+    @Resource
+    private MenuMapStruct menuMapStruct;
 
     @Override
     public List<MenuDTO> findByRoles(List<RoleDTO> list) {
@@ -35,19 +40,20 @@ public class BsMenuServiceImpl extends ServiceImpl<BsMenuMapper, BsMenu> impleme
     }
 
     @Override
-    public List<Map<String, Object>> getMenuTree(List<MenuDTO> list) {
+    public Object getMenuTree(List<MenuDTO> list) {
         List<Map<String,Object>> menus = new LinkedList<>();
-        Map<String,Object> map = new HashMap<>();
         list.stream().forEach(l->{
-            map.clear();
-            map.put("id",l.getId());
-            map.put("label",l.getName());
-            List<BsMenu> menuList=this.baseMapper.selectList(new QueryWrapper<BsMenu>().eq("PID",l.getPid()));
-           /* if(menuList!=null && menuList.size()!=0){
-                map.put("children",this.getMenuTree(menuList));
+            if(l!=null) {
+                Map<String,Object> map = new HashMap<>();
+                map.put("id", l.getId());
+                map.put("label", l.getName());
+                List<BsMenu> menuList = this.baseMapper.selectList(new QueryWrapper<BsMenu>().eq("PID", l.getPid()));
+                if (menuList != null && menuList.size() != 0) {
+                    map.put("children", this.getMenuTree(menuMapStruct.to(menuList)));
+                }
+                menus.add(map);
             }
-            list.add(map);*/
         });
-        return null;
+        return menus;
     }
 }
