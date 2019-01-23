@@ -1,21 +1,22 @@
 import axios from 'axios'
-import { Message, MessageBox } from 'element-ui'
+import router from '@/router'
+import { Notification, MessageBox } from 'element-ui'
 import store from '../store'
 import { getToken } from '@/utils/auth'
 
 // 创建axios实例
 const service = axios.create({
   baseURL: process.env.BASE_API, // api 的 base_url
-  timeout: 5000 // 请求超时时间
+  timeout: 10000 // 请求超时时间
 })
 
 // request拦截器
 service.interceptors.request.use(
   config => {
     if (store.getters.token) {
-      config.headers['Authorization'] ='Bearer '+ getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
+      config.headers['Authorization'] = 'Bearer ' + getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
     }
-    config.headers['Content-Type'] = 'application/json';
+    config.headers['Content-Type'] = 'application/json'
     return config
   },
   error => {
@@ -28,13 +29,12 @@ service.interceptors.request.use(
 // response 拦截器
 service.interceptors.response.use(
   response => {
-    const code = response.status
-    console.log(code)
-    if (code < 200 || code > 300) {
+    const res = response.data
+    if (res.code !== 0) {
       Notification.error({
-        title: response.message
+        title: res.message
       })
-      return Promise.reject('error')
+      return  Promise.reject('error')
     } else {
       return response.data
     }
@@ -42,7 +42,7 @@ service.interceptors.response.use(
   error => {
     let code = 0
     try {
-      code = error.response.data.status
+      code = error.response.data.code
     } catch (e) {
       if (error.toString().indexOf('timeout')) {
         Notification.error({
@@ -63,7 +63,10 @@ service.interceptors.response.use(
         }
       ).then(() => {
         store.dispatch('LogOut').then(() => {
-          location.reload() // 为了重新实例化vue-router对象 避免bug
+          /**
+           *  为了重新实例化vue-router对象 避免bug
+           */
+          location.reload()
         })
       })
     } else if (code === 403) {
@@ -79,8 +82,6 @@ service.interceptors.response.use(
     }
     return Promise.reject(error)
   }
-
-
 )
 
 export default service

@@ -1,6 +1,11 @@
 import request from '@/utils/request'
 
-export function login(username, password) {
+/**
+ * 登录
+ * @param username
+ * @param password
+ */
+export function login (username, password) {
   return request({
     url: '/auth/login',
     method: 'post',
@@ -11,14 +16,20 @@ export function login(username, password) {
   })
 }
 
-export function getInfo() {
+/**
+ * 获取用户信息
+ */
+export function getInfo () {
   return request({
     url: '/auth/info',
-    method: 'get',
+    method: 'get'
   })
 }
 
-export function logout() {
+/**
+ * 注销
+ */
+export function logout () {
   return request({
     url: '/system/logout',
     method: 'post'
