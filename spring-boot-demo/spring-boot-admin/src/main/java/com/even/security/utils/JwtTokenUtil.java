@@ -111,12 +111,12 @@ public class JwtTokenUtil implements Serializable {
 
     /**
      * 自动生成token
-     * @param userDetails
+     * @param name
      * @return
      */
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(String name) {
         Map<String, Object> claims = new HashMap<>();
-        return doGenerateToken(claims, userDetails.getUsername());
+        return doGenerateToken(claims, name);
     }
 
     /**

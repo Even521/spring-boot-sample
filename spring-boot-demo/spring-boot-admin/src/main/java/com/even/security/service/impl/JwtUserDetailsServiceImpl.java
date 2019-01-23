@@ -5,6 +5,7 @@ import com.even.security.JwtUser;
 import com.even.system.dto.PermissionDTO;
 import com.even.system.dto.RoleDTO;
 import com.even.system.dto.UserDTO;
+import com.even.system.entity.BsPermission;
 import com.even.system.service.IBsUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,9 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -64,12 +63,13 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
      * @param roleDTOS
      * @return
      */
-    private static List<GrantedAuthority> toGrantedAuthority(List<RoleDTO> roleDTOS){
-        Set<PermissionDTO> permissions=new HashSet<>();
-        roleDTOS.stream().forEach(roleDTO -> {
-            permissions.addAll(roleDTO.getPermissions());
-        });
-        return permissions.stream().map(permissionDTO ->
+    private  List<GrantedAuthority> toGrantedAuthority(List<RoleDTO> roleDTOS){
+       List<PermissionDTO> list=new ArrayList<>();
+       for (RoleDTO roleDTO:roleDTOS){
+        list.addAll(roleDTO.getPermissions());
+       }
+
+        return list.stream().map(permissionDTO ->
                 new SimpleGrantedAuthority("ROLE_"+permissionDTO.getPermissionName())
         ).collect(Collectors.toList());
 

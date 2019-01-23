@@ -1,5 +1,7 @@
 package com.even.security;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -34,6 +36,7 @@ public class JwtUser implements UserDetails {
     /**
      * 密码
      */
+    @JSONField(serialize=false)
     private final String passWord;
     /**
      * 头像
@@ -60,6 +63,7 @@ public class JwtUser implements UserDetails {
     /**
      * 权限
      */
+    @JSONField(serialize = false)
     private final Collection<? extends GrantedAuthority> roles;
 
     /**

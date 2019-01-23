@@ -1,5 +1,7 @@
 package com.even.security;
 
+import com.alibaba.fastjson.JSON;
+import com.even.common.exception.DescribeException;
 import com.even.common.exception.eum.ExceptionEnum;
 import com.even.common.result.ResultUtils;
 import com.fasterxml.jackson.databind.util.JSONPObject;
@@ -26,14 +28,10 @@ import java.io.Serializable;
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Serializable {
     @Override
     public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException authException) throws IOException, ServletException {
-        /**
-         * 当用户尝试访问安全的REST资源而不提供任何凭据时，将调用此方法发送401 响应
-         */
-       // httpServletResponse.setStatus(401);
+        httpServletResponse.setStatus(200);
         httpServletResponse.setCharacterEncoding("utf-8");
         httpServletResponse.setContentType("application/json; charset=utf-8");
         PrintWriter writer =httpServletResponse.getWriter();
-        writer.write(ResultUtils.error(ExceptionEnum.AccessDenied).toString());
-        //httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException==null?"Unauthorized":authException.getMessage());
+        writer.write(JSON.toJSONString(ResultUtils.error(ExceptionEnum.AccessDenied.getCode(),ExceptionEnum.AccessDenied.getMsg())));
     }
 }

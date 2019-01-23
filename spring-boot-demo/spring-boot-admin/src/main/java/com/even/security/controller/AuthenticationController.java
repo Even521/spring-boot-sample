@@ -1,5 +1,7 @@
 package com.even.security.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.even.common.exception.DescribeException;
 import com.even.common.exception.eum.ExceptionEnum;
 import com.even.common.result.Result;
@@ -9,6 +11,8 @@ import com.even.security.AuthorizationUser;
 import com.even.security.JwtUser;
 import com.even.security.utils.EncryptUtils;
 import com.even.security.utils.JwtTokenUtil;
+import com.even.system.entity.BsUser;
+import com.even.system.service.IBsUserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -44,6 +48,9 @@ public class AuthenticationController {
     @Qualifier("jwtUserDetailsService")
     @Autowired
     private UserDetailsService userDetailsService;
+    @Autowired
+    private IBsUserService iBsUserService;
+
 
     /**
      * 登录授权
@@ -52,17 +59,17 @@ public class AuthenticationController {
      */
     @PostMapping(value = "${jwt.auth.path}")
     public Result<AuthenticationToken> authenticationLogin(@RequestBody AuthorizationUser authorizationUser) {
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(authorizationUser.getUsername());
+        final BsUser bsUser = iBsUserService.findByName(authorizationUser.getUsername());
         //判断密码
-        if(!userDetails.getPassword().equals(authorizationUser.getPassword())){
+        if(!bsUser.getPassWord().equals(authorizationUser.getPassword())){
             throw new DescribeException(ExceptionEnum.NULL_ERROR.getCode(),"密码错误");
         }
-        if(!userDetails.isEnabled()){
+        if(bsUser.getEnabled()==0?true:false){
             throw new DescribeException(ExceptionEnum.NULL_ERROR.getCode(),"账号已停用，请联系管理员");
         }
 
         // 生成令牌
-        final String token = jwtTokenUtil.generateToken(userDetails);
+        final String token = jwtTokenUtil.generateToken(bsUser.getUserName());
 
         // 返回 token
         return ResultUtils.success(new AuthenticationToken(token));
@@ -75,7 +82,9 @@ public class AuthenticationController {
      */
     @GetMapping(value = "${jwt.auth.account}")
     public  Result<JwtUser> getUserInfo(HttpServletRequest request){
-        JwtUser jwtUser = (JwtUser)userDetailsService.loadUserByUsername(jwtTokenUtil.getUserName(request));
+
+        JwtUser jwtUser= (JwtUser) userDetailsService.loadUserByUsername(jwtTokenUtil.getUserName(request));
+
         return ResultUtils.success(jwtUser);
     }
 }

@@ -10,9 +10,6 @@ spring:
   #出现错误时, 直接抛出异常(便于异常统一处理，否则捕获不到404)
   mvc:
     throw-exception-if-no-handler-found: true
-  jackson:
-    time-zone: GMT+8
-    date-format: yyyy-MM-dd HH:mm:ss
 jwt:
   header: Authorization
   secret: mySecret

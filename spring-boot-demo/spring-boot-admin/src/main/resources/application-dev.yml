@@ -39,10 +39,9 @@ spring:
       web-stat-filter:
         url-pattern: /*
         exclusions: "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*"
-
   fastjson:
-     enabled: true
-     config:
+    enabled: true
+    config:
        dateFormat: yyyy-MM-dd HH:mm:ss
 
 
