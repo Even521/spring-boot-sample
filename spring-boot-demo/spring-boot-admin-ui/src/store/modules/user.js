@@ -6,6 +6,8 @@ const user = {
   state: {
     token: getToken(),
     name: '',
+    email:'',
+    createTime: '',
     avatar: '',
     roles: []
   },
@@ -50,18 +52,18 @@ const user = {
     // 获取用户信息
     GetInfo: function ({commit, state}) {
       return new Promise((resolve, reject) => {
-        getInfo(state.token).then(response => {
+        getInfo().then(response => {
           const data = response.data
-          console.log(data)
-          if (data.authorities && data.authorities.length > 0) { // 验证返回的roles是否是一个非空数组
-            commit('SET_ROLES', data.authorities)
+
+          if (data.roles && data.roles.length > 0) { // 验证返回的roles是否是一个非空数组
+            commit('SET_ROLES', data.roles)
           } else {
             reject(new Error('用户角色不能为空'))
           }
           commit('SET_NAME', data.name)
           commit('SET_EMAIL', data.email)
           commit('SET_AVATAR', data.avatar)
-          commit('SET_CREATE_TIME', parseTime(data.createTime))
+          commit('SET_CREATE_TIME',data.createTime)
           resolve(response)
         }).catch(error => {
           reject(error)
