@@ -10,10 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.Date;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Administrator on 2019/1/15 0015.
@@ -64,20 +61,9 @@ public class JwtUser implements UserDetails {
      * 权限
      */
     @JSONField(serialize = false)
-    private final Collection<? extends GrantedAuthority> roles;
+    private final Collection<? extends GrantedAuthority> authorities;
 
-    /**
-     *  在我们保存权限的时候加上了前缀ROLE_，因此在这里需要处理下数据
-     * @return
-     */
-    @Override
-    public Collection getAuthorities() {
-        Set<String> roleSet = new LinkedHashSet<>();
-        for (GrantedAuthority authority : roles) {
-            roleSet.add(authority.getAuthority().substring(5));
-        }
-        return roleSet;
-    }
+
 
     @Override
     public String getPassword() {
@@ -107,5 +93,17 @@ public class JwtUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return enabled;
+    }
+
+    /**
+     * 在我们保存权限的时候加上了前缀ROLE_，因此在这里需要处理下数据
+     * @return
+     */
+    public Collection getRoles() {
+        List<String> roles = new LinkedList<>();
+        for (GrantedAuthority authority : authorities) {
+            roles.add(authority.getAuthority().substring(5));
+        }
+        return roles;
     }
 }

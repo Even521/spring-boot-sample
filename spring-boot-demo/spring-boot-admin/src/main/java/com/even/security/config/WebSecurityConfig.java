@@ -1,6 +1,7 @@
 package com.even.security.config;
 
 import com.even.security.JwtAuthenticationEntryPoint;
+import com.even.security.JwtAuthorizationTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
  * Created by Administrator on 2019/1/15 0015.
@@ -30,6 +32,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Value("${jwt.auth.path}")
     private String authenticationPath;
+
+    /**
+     * 自定义基于JWT的安全过滤器
+     */
+    @Autowired
+    JwtAuthorizationTokenFilter authenticationTokenFilter;
 
     @Autowired
     private JwtAuthenticationEntryPoint unauthorizedHandler;
@@ -72,8 +80,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // 所有请求都需要认证
                 .anyRequest().authenticated();
 
-       // httpSecurity
-              //  .addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
+        httpSecurity
+               .addFilterBefore(authenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     /**

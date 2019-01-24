@@ -48,7 +48,7 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
         return JwtUser.builder()
                 .userName(userDTO.getUserName())
                 .id(userDTO.getId())
-                .roles(this.toGrantedAuthority(userDTO.getRoleDTOS()))
+                .authorities(this.toGrantedAuthority(userDTO.getRoleDTOS()))
                 .avatar(userDTO.getAvatar())
                 .email(userDTO.getEmail())
                 .createTime(userDTO.getCreateTime())

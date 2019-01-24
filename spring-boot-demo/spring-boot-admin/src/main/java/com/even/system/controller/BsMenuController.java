@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ import java.util.List;
  * @author even
  * @since 2019-01-21
  */
-@Controller
+@RestController
 @RequestMapping("/api")
 public class BsMenuController {
     @Autowired
@@ -41,7 +42,7 @@ public class BsMenuController {
     public Result buildMenus(){
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserDTO userDTO=iBsUserService.findByUserName(userDetails.getUsername());
-        List<MenuDTO> list=iBsMenuService.findByRoles(userDTO.getRoleDTOS());
-        return ResultUtils.success(iBsMenuService.getMenuTree(list));
+
+        return ResultUtils.success(iBsMenuService.findByRoles(userDTO.getRoleDTOS()));
     }
 }

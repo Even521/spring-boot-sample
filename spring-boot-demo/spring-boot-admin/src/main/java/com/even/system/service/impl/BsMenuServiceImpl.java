@@ -33,7 +33,7 @@ public class BsMenuServiceImpl extends ServiceImpl<BsMenuMapper, BsMenu> impleme
         List<MenuDTO> menuDTOList=new ArrayList<>();
         QueryWrapper<RoleDTO> queryWrapper=new QueryWrapper<>();
         list.stream().forEach(i->{
-            queryWrapper.eq("id",i.getId()).orderByAsc("sort");
+            queryWrapper.eq("BS_MENUS_ROLES.id",i.getId()).orderByAsc("sort");
             menuDTOList.addAll(this.baseMapper.findByRoles(queryWrapper));
         });
         return menuDTOList;
