@@ -18,5 +18,17 @@ import java.util.List;
  * @since 2019-01-21
  */
 public interface BsMenuMapper extends BaseMapper<BsMenu> {
+   /**
+    * 查询菜单
+    * @param queryWrapper
+    * @return
+    */
    List<MenuDTO>  findByRoles(@Param("ew")QueryWrapper queryWrapper);
+
+   /**
+    * 查询子菜单
+    * @param id
+    * @return
+    */
+   List<MenuDTO> findByRoleId(@Param("id") int id);
 }

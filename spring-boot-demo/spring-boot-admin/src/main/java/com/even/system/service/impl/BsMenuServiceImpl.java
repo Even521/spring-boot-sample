@@ -25,35 +25,20 @@ import java.util.*;
  */
 @Service
 public class BsMenuServiceImpl extends ServiceImpl<BsMenuMapper, BsMenu> implements IBsMenuService {
-    @Resource
-    private MenuMapStruct menuMapStruct;
+
 
     @Override
     public List<MenuDTO> findByRoles(List<RoleDTO> list) {
         List<MenuDTO> menuDTOList=new ArrayList<>();
         QueryWrapper<RoleDTO> queryWrapper=new QueryWrapper<>();
         list.stream().forEach(i->{
-            queryWrapper.eq("BS_MENUS_ROLES.id",i.getId()).orderByAsc("sort");
+            queryWrapper.eq("BS_MENUS_ROLES.id",i.getId())
+                    .eq("BS_MENU.PID",0)
+                    .orderByAsc("sort");
             menuDTOList.addAll(this.baseMapper.findByRoles(queryWrapper));
         });
         return menuDTOList;
     }
 
-    @Override
-    public Object getMenuTree(List<MenuDTO> list) {
-        List<Map<String,Object>> menus = new LinkedList<>();
-        list.stream().forEach(l->{
-            if(l!=null) {
-                Map<String,Object> map = new HashMap<>();
-                map.put("id", l.getId());
-                map.put("label", l.getName());
-                List<BsMenu> menuList = this.baseMapper.selectList(new QueryWrapper<BsMenu>().eq("PID", l.getPid()));
-                if (menuList != null && menuList.size() != 0) {
-                    map.put("children", this.getMenuTree(menuMapStruct.to(menuList)));
-                }
-                menus.add(map);
-            }
-        });
-        return menus;
-    }
+
 }

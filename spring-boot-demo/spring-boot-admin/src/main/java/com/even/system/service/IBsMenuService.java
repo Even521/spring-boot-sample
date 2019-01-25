@@ -26,7 +26,7 @@ public interface IBsMenuService extends IService<BsMenu> {
      */
     List<MenuDTO> findByRoles(List<RoleDTO> list);
 
-   Object getMenuTree(List<MenuDTO> list);
+
 
 
 }
