@@ -17,10 +17,17 @@ const permission = {
     }
   }
 }
-
-export const filterAsyncRouter = (routers) => { // 遍历后台传来的路由字符串，转换为组件对象
+/**
+ * 异步过滤器路由
+ * @param routers
+ * @returns {*}
+ */
+export const filterAsyncRouter = (routers) => {
+  // 遍历后台传来的路由字符串，转换为组件对象
   const accessedRouters = routers.filter(router => {
+
     if (router.component) {
+
       if (router.component === 'Layout') { // Layout组件特殊处理
         router.component = Layout
       } else {

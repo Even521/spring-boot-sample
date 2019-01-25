@@ -20,12 +20,11 @@ router.beforeEach((to, from, next) => {
       console.log(store.dispatch('GetInfo'))
       //console.log(data.authorities.length)
       if (store.getters.roles.length === 0) {
-        console.log(store.getters.roles)
         store.dispatch('GetInfo').then(res => { // 拉取用户信息
           //获取菜单树
           buildMenus().then(res=>{
-
-            const asyncRouter = filterAsyncRouter(res)
+            //异步请求
+            const asyncRouter = filterAsyncRouter(res.data)
             asyncRouter.push({ path: '*', redirect: '/404', hidden: true })
             store.dispatch('GenerateRoutes', asyncRouter).then(() => { // 存储路由
               router.addRoutes(asyncRouter) // 动态添加可访问路由表
