@@ -39,7 +39,7 @@ export const constantRouterMap = [
         meta: { title: '首页', icon: 'index', noCache: true }
       }
     ]
-  },
+  }
   /*{
     path: '/user',
     component: Layout,

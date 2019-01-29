@@ -17,7 +17,7 @@ router.beforeEach((to, from, next) => {
     } else {
 
       //判断当前用户是否获得用户信息
-      console.log(store.dispatch('GetInfo'))
+      //console.log(store.dispatch('GetInfo'))
       //console.log(data.authorities.length)
       if (store.getters.roles.length === 0) {
         store.dispatch('GetInfo').then(res => { // 拉取用户信息
