@@ -11,6 +11,6 @@ import java.io.Serializable;
  */
 @Data
 public class Meta implements Serializable {
-    private String tile;
+    private String title;
     private String icon;
 }

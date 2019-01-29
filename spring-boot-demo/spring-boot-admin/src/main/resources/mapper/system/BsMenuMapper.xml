@@ -10,7 +10,7 @@
         <result column="PID" property="pid" javaType="INTEGER"/>
         <result column="I_FRAME" property="iFrame" jdbcType="INTEGER" />
         <association property="meta" javaType="com.even.system.dto.Meta">
-            <result property="tile" column="NAME" javaType="java.lang.String"/>
+            <result property="title" column="NAME" javaType="java.lang.String"/>
             <result property="icon" column="ICON" javaType="java.lang.String"/>
         </association>
         <collection column="id" property="children" ofType="com.even.system.dto.MenuDTO" select="findByRoleId" />
