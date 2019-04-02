@@ -1,18 +1,10 @@
 server:
   port: 9110
+logging:
+  level:
+    org:
+      springframework: INFO
 
-async:
-  executor:
-    thread:
-      core_pool_size: 20
-      # 配置最大线程数
-      max_pool_size: 100
-      # 配置队列大小
-      queue_capacity: 2000
-      #线程池维护线程所允许的空闲时间
-      keep_alive_seconds: 300
-      # 配置线程池中的线程的名称前缀
-      prefix: async-service-
 
 
 
