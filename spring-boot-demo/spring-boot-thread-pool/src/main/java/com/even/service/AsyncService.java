@@ -13,4 +13,9 @@ public interface AsyncService {
      * @param list
      */
     void asyncRequest(List<Integer> list);
+
+    /**
+     * 打印
+     */
+    void printInLog();
 }

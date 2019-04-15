@@ -1,12 +1,8 @@
 package com.even.service;
 
 import com.even.utils.ListUtils;
-import lombok.Getter;
+import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 
@@ -22,15 +18,26 @@ import java.util.List;
 @Service
 @Log4j2
 public class AsyncServiceImpl implements AsyncService{
-
     @Resource(name="asyncServiceExecutor")
     private ThreadPoolTaskExecutor threadPoolTaskExecutor;
 
-
+    /**
+     * 打印日志
+     * @param
+     */
+    @Override
+    public void  printInLog(){
+        log.info("{},taskCount [{}], completedTaskCount [{}], activeCount [{}], queueSize [{}]",
+                threadPoolTaskExecutor.getThreadNamePrefix(),
+                threadPoolTaskExecutor.getThreadPoolExecutor().getTaskCount(),
+                threadPoolTaskExecutor.getThreadPoolExecutor().getCompletedTaskCount(),
+                threadPoolTaskExecutor.getThreadPoolExecutor().getActiveCount(),
+                threadPoolTaskExecutor.getThreadPoolExecutor().getQueue().size());
+    }
 
 
     private void toDo(int i){
-        log.info("{} hello-{}",LocalDateTime.now(),i);
+        log.error(" hello-{}",i);
     }
 
     @Override
@@ -38,16 +45,13 @@ public class AsyncServiceImpl implements AsyncService{
         List<List<Integer>> lists= ListUtils.averageAssign(list,5);
         lists.forEach(
                 l -> {
-                    threadPoolTaskExecutor.execute(
-                            () -> l.forEach(
-                                    i -> this.toDo(i)
-                            )
+                    threadPoolTaskExecutor.execute(() ->
+                               l.forEach(
+                                   i -> this.toDo(i) )
                     );
-
                 }
 
         );
-
     }
 
 

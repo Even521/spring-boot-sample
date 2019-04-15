@@ -1,6 +1,7 @@
 package com.even;
 
 import com.even.service.AsyncService;
+import lombok.extern.java.Log;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +23,8 @@ public class SpringBootThreadPoolApplicationTests {
 
     @Test
     public void contextLoads() {
-     asyncService.asyncRequest(list());
+        asyncService.asyncRequest(list());
+        asyncService.printInLog();
 
     }
 
