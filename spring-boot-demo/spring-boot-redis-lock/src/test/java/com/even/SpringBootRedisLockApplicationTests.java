@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.integration.redis.util.RedisLockRegistry;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -18,6 +20,8 @@ public class SpringBootRedisLockApplicationTests {
 
     @Autowired
     private RedisLockRegistry redisLockRegistry;
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @Test
     public void contextLoads() throws InterruptedException {
@@ -25,6 +29,11 @@ public class SpringBootRedisLockApplicationTests {
         boolean b1 = lock.tryLock();
         log.info("b1 is : {}", b1);
         lock.unlock();
+
+    }
+    @Test
+    public void test() throws Exception {
+        redisTemplate.opsForValue().set("test:set","testValue1");
 
     }
 
