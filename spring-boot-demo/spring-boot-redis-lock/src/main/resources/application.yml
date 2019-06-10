@@ -1,0 +1,23 @@
+server:
+  port: 9012
+
+spring:
+  application:
+    name: redis-lock
+  redis:
+    host: 192.168.0.10
+    port: 6379
+    password: xiangxue@1qazXSW@
+    timeout: 5000
+    database: 1
+    #lettuce ���ӳ�
+    lettuce:
+      pool:
+        max-active: 3000
+        max-wait: 5000
+        max-idle: 10
+        min-idle: 0
+
+
+
+
