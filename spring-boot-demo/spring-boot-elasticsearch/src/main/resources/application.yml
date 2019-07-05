@@ -5,7 +5,7 @@ spring:
     elasticsearch:
       repositories:
         enabled: true
-      cluster-name: adultvaccine
-      cluster-nodes: 192.168.0.212:9300
+      cluster-name: elasticsearch
+      cluster-nodes: 192.168.0.10:9300
 
 
