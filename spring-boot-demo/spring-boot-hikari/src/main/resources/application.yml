@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: hikari
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.0.10:3310/study?useUnicode=true&characterEncoding=utf-8&rewriteBatchedStatements=true&useOldAliasMetadataBehavior=true
+    username: root
+    password: UI.com1234qwer
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      pool-name: Hikari-Pool
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 180000
+      max-lifetime: 1800000
+      connection-timeout: 5000
+      connection-test-query: select 1
