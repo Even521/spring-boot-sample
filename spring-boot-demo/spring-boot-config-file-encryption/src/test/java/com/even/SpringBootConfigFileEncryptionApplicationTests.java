@@ -30,6 +30,7 @@ public class SpringBootConfigFileEncryptionApplicationTests {
      */
     @Test
     public void setPassword(){
+
         BasicTextEncryptor basicTextEncryptor = new BasicTextEncryptor();
         // application.properties, jasypt.encryptor.password
         basicTextEncryptor.setPassword("even");
