@@ -102,4 +102,4 @@ java -jar -Djasypt.encryptor.password=even xxx.jar
 ```
 ### 6.参考资料
 1. [jasypt](https://github.com/ulisesbocchio/jasypt-spring-boot)
-2. [本项目demo github地址]()
+2. [本项目demo github地址](https://github.com/Even521/spring-boot-sample/tree/master/spring-boot-demo/spring-boot-config-file-encryption)
