@@ -23,6 +23,10 @@ public class ExceptionInfo {
      */
     private String project;
     /**
+     * 用户Id
+     */
+    private String userId;
+    /**
      * 异常的标识码
      */
     private String uid;
@@ -85,10 +89,11 @@ public class ExceptionInfo {
      * @param args
      * @param reqAddress
      */
-    public ExceptionInfo(Throwable ex, String methodName, String filterTrace, Object args, String reqAddress) {
+    public ExceptionInfo(Throwable ex, String methodName, String filterTrace, Object args, String reqAddress,String userId) {
         this.exceptionMessage = getExceptionMessage(ex);
         this.reqAddress = reqAddress;
         this.params = args;
+        this.userId=userId;
         List<StackTraceElement> list = Arrays.stream(ex.getStackTrace())
                 .filter(x -> filterTrace == null || x.getClassName().startsWith(filterTrace))
                 .filter(x -> !"<generated>".equals(x.getFileName())).collect(Collectors.toList());
@@ -108,6 +113,7 @@ public class ExceptionInfo {
     public String createText() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("项目名称：").append(project).append("\n");
+        stringBuilder.append("请求用户ID：").append(userId).append("\n");
         stringBuilder.append("类路径：").append(classPath).append("\n");
         stringBuilder.append("请求地址：").append(reqAddress).append("\n");
         stringBuilder.append("方法名：").append(methodName).append("\n");

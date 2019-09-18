@@ -22,9 +22,9 @@ public class ExceptionNoticeProperties {
      */
     public static final String PREFIX="exception.notice.ding.talk";
     /**
-     * 异常信息发送的时间周期 以秒为单位 默认3s
+     * 异常信息发送的时间周期 以秒为单位 默认5s
      */
-    private Long period=3L;
+    private Long period=5L;
     /**
      * 是否启用
      */

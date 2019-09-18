@@ -9,5 +9,9 @@ import com.even.exception.dingtalk.model.ExceptionInfo;
  * 钉钉异常信息通知接口
  */
 public interface DingTalkService {
+    /**
+     * 发送异常消息
+     * @param exceptionInfo
+     */
     void sendNotice(ExceptionInfo exceptionInfo);
 }

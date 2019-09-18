@@ -57,13 +57,15 @@ public class ExceptionNoticeHandler {
         //获取当前请求对象
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         String address = null;
+        String userId=null;
         if (attributes != null) {
             HttpServletRequest request = attributes.getRequest();
+            userId=request.getHeader("userId");
             //获取请求地址
             address = request.getRequestURL().toString() + ((request.getQueryString() != null && request.getQueryString().length() > 0) ? "?" + request.getQueryString() : "");
         }
 
-        ExceptionInfo exceptionInfo = new ExceptionInfo(ex, joinPoint.getSignature().getName(), exceptionProperties.getIncludedTracePackage(), parameter, address);
+        ExceptionInfo exceptionInfo = new ExceptionInfo(ex, joinPoint.getSignature().getName(), exceptionProperties.getIncludedTracePackage(), parameter, address,userId);
         exceptionInfo.setProject(exceptionProperties.getProjectName());
         return exceptionInfoBlockingDeque.offer(exceptionInfo);
     }
