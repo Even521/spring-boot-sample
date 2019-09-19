@@ -17,10 +17,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.*;
 
 /**
@@ -60,7 +57,15 @@ public class ExceptionNoticeHandler {
         String userId=null;
         if (attributes != null) {
             HttpServletRequest request = attributes.getRequest();
-            userId=request.getHeader("userId");
+            Enumeration<String> headerNames = request.getHeaderNames();
+            if(headerNames!=null){
+                while (headerNames.hasMoreElements()){
+                    String name	=(String) headerNames.nextElement();
+                    String value = request.getHeader(name);
+                    userId +=name+":"+value;
+                }
+            }
+
             //获取请求地址
             address = request.getRequestURL().toString() + ((request.getQueryString() != null && request.getQueryString().length() > 0) ? "?" + request.getQueryString() : "");
         }
