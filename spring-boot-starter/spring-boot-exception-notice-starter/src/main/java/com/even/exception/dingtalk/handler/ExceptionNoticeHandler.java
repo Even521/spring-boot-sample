@@ -55,22 +55,22 @@ public class ExceptionNoticeHandler {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         String address = null;
         String userId=null;
+        String session=null;
         if (attributes != null) {
             HttpServletRequest request = attributes.getRequest();
-            Enumeration<String> headerNames = request.getHeaderNames();
-            if(headerNames!=null){
-                while (headerNames.hasMoreElements()){
-                    String name	=(String) headerNames.nextElement();
-                    String value = request.getHeader(name);
-                    userId +=name+":"+value;
-                }
+            userId=request.getHeader("userId");
+            if (request.getHeader("session")!=null){
+                session=request.getHeader("session");
+            }
+            if (request.getHeader("Authorization")!=null){
+                session=request.getHeader("Authorization");
             }
 
             //获取请求地址
             address = request.getRequestURL().toString() + ((request.getQueryString() != null && request.getQueryString().length() > 0) ? "?" + request.getQueryString() : "");
         }
 
-        ExceptionInfo exceptionInfo = new ExceptionInfo(ex, joinPoint.getSignature().getName(), exceptionProperties.getIncludedTracePackage(), parameter, address,userId);
+        ExceptionInfo exceptionInfo = new ExceptionInfo(ex, joinPoint.getSignature().getName(), exceptionProperties.getIncludedTracePackage(), parameter, address,userId,session);
         exceptionInfo.setProject(exceptionProperties.getProjectName());
         return exceptionInfoBlockingDeque.offer(exceptionInfo);
     }
