@@ -28,51 +28,41 @@
 三个参数分别对应的是:地域ID，RAM账号的AccessKey ID， RAM账号AccessKey Secret
 模板ID是阿里云短信生成模板的ID。
 ```$xslt
-@Setter
-@Getter
 @ConfigurationProperties(prefix=AliYunSmsProperties.PREFIX )
-@AllArgsConstructor
+@Data
 public class AliYunSmsProperties {
-    /**
-     * 阿里短信服务配置前缀名
-     *
-     */
-   public static final String PREFIX="ali.sms";
+ /**
+  * 阿里短信服务配置前缀名
+  *
+  */
+ public static final String PREFIX="ali.sms";
 
-    /**
-     * 短信API产品名称（短信产品名固定，无需修改）
-     */
-    private String product = "Dysmsapi";
+ /**
+  * 短信API产品名称（短信产品名固定，无需修改）
+  */
+ private String product = "Dysmsapi";
 
-    /**
-     * 短信API产品域名（接口地址固定，无需修改）
-     */
-    private String domain = "dysmsapi.aliyuncs.com";
-    /**
-     * regionId
-     */
-    private String regionId="cn-hangzhou";
+ /**
+  * 短信API产品域名（接口地址固定，无需修改）
+  */
+ private String domain = "dysmsapi.aliyuncs.com";
+ /**
+  * regionId
+  */
+ private String regionId="cn-hangzhou";
+ /**
+  * 是否可用
+  */
+ private boolean enable;
+ /**
+  * 阿里accessKeyId
+  */
+ private String accessKeyId;
+ /**
+  * 阿里accessSecret
+  */
+ private String accessSecret;
 
-    /**
-     * 阿里accessKeyId
-     */
-    @Value("${accessKeyId}")
-    private String accessKeyId;
-    /**
-     * 阿里accessSecret
-     */
-    @Value("${accessSecret}")
-    private String accessSecret;
-    /**
-     * 签名名称
-     */
-    @Value("${signName}")
-    private String signName;
-    /**
-     * 模板code
-     */
-    @Value("${templateCode}")
-    private String templateCode;
 }
 ```
 ### 4.在AUTO—Config类中添加AliYunSmsService Bean
