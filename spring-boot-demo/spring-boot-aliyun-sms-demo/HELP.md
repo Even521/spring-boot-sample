@@ -27,7 +27,7 @@
 3.2 这里的4给参数分别对应阿里云平台：
 三个参数分别对应的是:地域ID，RAM账号的AccessKey ID， RAM账号AccessKey Secret
 模板ID是阿里云短信生成模板的ID。
-```
+```$xslt
 @ConfigurationProperties(prefix=AliYunSmsProperties.PREFIX )
 @Data
 public class AliYunSmsProperties {
@@ -64,20 +64,25 @@ public class AliYunSmsProperties {
  private String accessSecret;
 
 }
-
 ```
-### 4.在AUTO—Config类中添加AliYunSmsService Bean
+### 4.在AliYunAutoConfiguration类中添加AliYunSmsService Bean
 4.1 注入AliYunSmsService Bean
-```$xslt
-     @Bean
-     public AliYunSmsService aliYunSmsService(AliYunSmsProperties properties){
-         return new AliYunSmsServiceImpl(properties);
-     }
+```
+@Configuration
+@EnableConfigurationProperties(value = AliYunSmsProperties.class)
+@ConditionalOnProperty(prefix = AliYunSmsProperties.PREFIX, name = "enable", havingValue = "true")
+public class AliYunAutoConfiguration {
+    @Bean
+    public AliYunSmsService aliYunSmsService(AliYunSmsProperties properties){
+        return new AliYunSmsServiceImpl(properties);
+    }
+}
+   
 ```
 ### 5.创建发送短信接口
 5.1 创建AliYunSmsService接口,这里只封装了一个给手机发送验证码接口。
 5.2 如需批量发送、查询自定义即可。
-```$xslt
+```
 public interface AliYunSmsService {
     /**
      * 阿里云发送短消息
@@ -99,25 +104,49 @@ public interface AliYunSmsService {
 ### 6.实现AliYunSmsService接口
 6.1 实现主要调用阿里sqk里面的方法，request.putQueryParamete()我们修改主要是修改这里面的参数。
 ```
-/**
-     * 阿里客户端
+@Slf4j
+@RequiredArgsConstructor
+public class AliYunSmsServiceImpl implements AliYunSmsService{
+
+    private final  AliYunSmsProperties aliYunSmsProperties;
+
+    /**
+     * 获取默认客户端
+     * @return
      */
-    private final IAcsClient client;
-    private final AliYunSmsProperties aliYunSmsProperties;
+    public IAcsClient getDefaultAcsClient(){
+        DefaultProfile profile = DefaultProfile.getProfile(aliYunSmsProperties.getRegionId(), aliYunSmsProperties.getAccessKeyId(), aliYunSmsProperties.getAccessSecret());
+        DefaultProfile.addEndpoint( aliYunSmsProperties.getRegionId(),
+                aliYunSmsProperties.getProduct(), aliYunSmsProperties.getDomain());
+        //可自助调整超时时间
+        System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
+        System.setProperty("sun.net.client.defaultReadTimeout", "10000");
+        return new DefaultAcsClient(profile);
+    }
 
-
-    @Override
-    public boolean sendSms(String phoneNumber,String templateParam) {
+    /**
+     * 封装公共的request
+     * @return
+     */
+    private CommonRequest request(){
         CommonRequest request = new CommonRequest();
         request.setSysMethod(MethodType.POST);
+        request.setSysDomain(aliYunSmsProperties.getDomain());
+        request.setSysVersion("2017-05-25");
         request.setSysAction("SendSms");
-        request.putQueryParameter("RegionId",aliYunSmsProperties.getRegionId());
-        request.putQueryParameter("PhoneNumber",phoneNumber);
-        request.putQueryParameter("SingName",aliYunSmsProperties.getSignName());
-        request.putQueryParameter("TemplateCode",aliYunSmsProperties.getTemplateCode());
-        request.putQueryParameter("TemplateParam",templateParam);
+        request.putQueryParameter("RegionId", aliYunSmsProperties.getRegionId());
+        return request;
+    }
+
+    @Override
+    public boolean sendSms(String phoneNumber, String signName, String templateCode, String templateParam) {
+        CommonRequest request = this.request();
+        request.putQueryParameter("PhoneNumbers", phoneNumber);
+        request.putQueryParameter("SignName", signName);
+        request.putQueryParameter("TemplateCode", templateCode);
+        request.putQueryParameter("TemplateParam", templateParam);
         try {
-            CommonResponse response = client.getCommonResponse(request);
+            CommonResponse response = this.getDefaultAcsClient().getCommonResponse(request);
             log.info(response.getData());
             return true;
         } catch (Exception e) {
@@ -136,6 +165,7 @@ public interface AliYunSmsService {
         }
         return sBuilder.toString();
     }
+}
 ```
 6.2 项目源码:[spring-boot-sms-starter](https://github.com/Even521/spring-boot-sample/tree/master/spring-boot-starter/spring-boot-sms-starter)
 ### 7.创建一个spring boot项目：spring-boot-aliyun-sms-demo
@@ -181,6 +211,6 @@ ali:
 2019-10-17 14:13:31.556  INFO 5668 --- [           main] .SpringBootAliyunSmsDemoApplicationTests : 验证码为：861363
 2019-10-17 14:13:32.230  INFO 5668 --- [           main] c.e.aliyun.service.AliYunSmsServiceImpl  : {"Message":"OK","RequestId":"CFA4FD81-5506-4F2C-825B-FF420802140D","BizId":"295316571292812259^0","Code":"OK"}
 ```
-### 9源码地址
+### 9.源码地址
 1. [spring-boot-aliyun-sms-demo](https://github.com/Even521/spring-boot-sample/tree/master/spring-boot-demo/spring-boot-aliyun-sms-demo)
 2. [spring-boot-sms-starter](https://github.com/Even521/spring-boot-sample/tree/master/spring-boot-starter/spring-boot-sms-starter)
