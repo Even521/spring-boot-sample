@@ -84,8 +84,8 @@ public class AliYunSmsProperties {
      }
 ```
 ### 5.创建发送短信接口
-创建AliYunSmsService接口,这里只封装了一个给手机发送验证码接口。
-如需批量发送、查询自定义即可。
+5.1 创建AliYunSmsService接口,这里只封装了一个给手机发送验证码接口。
+5.2 如需批量发送、查询自定义即可。
 ```$xslt
 public interface AliYunSmsService {
     /**
@@ -106,7 +106,7 @@ public interface AliYunSmsService {
 
 ```
 ### 6.实现AliYunSmsService接口
-实现主要调用阿里sqk里面的方法，request.putQueryParamete()我们修改主要是修改这里面的参数。
+6.1 实现主要调用阿里sqk里面的方法，request.putQueryParamete()我们修改主要是修改这里面的参数。
 ```
 /**
      * 阿里客户端
@@ -146,7 +146,7 @@ public interface AliYunSmsService {
         return sBuilder.toString();
     }
 ```
-项目源码
+6.2 项目源码:[spring-boot-sms-starter](https://github.com/Even521/spring-boot-sample/tree/master/spring-boot-starter/spring-boot-sms-starter)
 ### 7.创建一个spring boot项目：spring-boot-aliyun-sms-demo
 7.1 导入依赖包
 ```
