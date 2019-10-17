@@ -1,0 +1,5 @@
+ali:
+  sms:
+    access-key-id: 这里填阿里云access-key-id
+    access-secret: 这里填阿里云access-secret
+    enable: true
