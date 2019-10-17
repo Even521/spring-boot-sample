@@ -86,11 +86,14 @@ public class AliYunAutoConfiguration {
 public interface AliYunSmsService {
     /**
      * 阿里云发送短消息
-     * @param phoneNumber
-     * @param templateParam 模板内容json串
+     * @param phoneNumber 手机号
+     * @param signName     阿里云短信签名
+     * @param templateCode  阿里云短信模板code
+     * @param templateParam json模板参数字符串
      * @return
      */
-    boolean sendSms(@NonNull String phoneNumber,@NonNull String templateParam);
+    boolean sendSms(@NonNull String phoneNumber,@NonNull String signName,
+                    @NonNull String templateCode,@NonNull String templateParam);
 
     /**
      * 获取验证码随机数
@@ -99,7 +102,6 @@ public interface AliYunSmsService {
      */
     String getRandCode(int digits);
 }
-
 ```
 ### 6.实现AliYunSmsService接口
 6.1 实现主要调用阿里sqk里面的方法，request.putQueryParamete()我们修改主要是修改这里面的参数。

@@ -12,10 +12,10 @@ import org.springframework.lang.NonNull;
 public interface AliYunSmsService {
     /**
      * 阿里云发送短消息
-     * @param phoneNumber
-     * @param signName
-     * @param templateCode
-     * @param templateParam
+     * @param phoneNumber 手机号
+     * @param signName     阿里云短信签名
+     * @param templateCode  阿里云短信模板code
+     * @param templateParam json模板参数字符串
      * @return
      */
     boolean sendSms(@NonNull String phoneNumber,@NonNull String signName,
