@@ -1,6 +1,5 @@
 package com.even.aliyun.service;
 
-import com.aliyuncs.exceptions.ClientException;
 import org.springframework.lang.NonNull;
 
 /**
