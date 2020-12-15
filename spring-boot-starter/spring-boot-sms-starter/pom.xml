@@ -16,7 +16,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>12</maven.compiler.source>
     <maven.compiler.target>12</maven.compiler.target>
-    <spring-boot.version>2.2.2.RELEASE</spring-boot.version>
+    <spring-boot.version>2.2.5.RELEASE</spring-boot.version>
     <aliyun-java-sdk-core.version>4.4.6</aliyun-java-sdk-core.version>
     <lombok.version>1.18.10</lombok.version>
   </properties>
@@ -68,13 +68,13 @@
 
   <distributionManagement>
     <repository>
-      <id>xiangxue-releases</id>
-      <url>http://116.62.232.207:8081/repository/maven-releases/</url>
+      <id>xiangxue-releases-inet</id>
+      <url>http://192.168.0.10:8081/repository/maven-releases/</url>
     </repository>
 
     <snapshotRepository>
-      <id>xiangxue-snapshots</id>
-      <url>http://116.62.232.207:8081/repository/maven-snapshots/</url>
+      <id>xiangxue-snapshots-inet</id>
+      <url>http://192.168.0.10:8081/repository/maven-snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
 </project>
