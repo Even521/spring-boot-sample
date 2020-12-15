@@ -1,10 +1,10 @@
-package com.even.springbootmysqlwebful;
+package com.even.springbootknife4j;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringBootMysqlWebfulApplicationTests {
+class SpringBootKnife4jApplicationTests {
 
     @Test
     void contextLoads() {
