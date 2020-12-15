@@ -1,5 +1,6 @@
 # 响应式编程
 
+
 ### 配置pom依赖
 ```$xslt
 <dependency>
@@ -24,6 +25,7 @@
         </dependency>
 ```
 spring-boot-starter-webflux 依赖，是我们核心需要学习 webflux 的包，里面默认包含了 spring-boot-starter-reactor-netty 、spring 5 webflux 包。也就是说默认是通过 netty 启动的。
+
 ###编写一个Handler
 ```$xslt
 @Component
