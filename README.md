@@ -11,7 +11,7 @@
      [spring-boot-webflux-mysql](https://github.com/Even521/spring-boot-sample/tree/master/spring-boot-demo/reactive/spring-boot-webflux-mysql) webflux r2dbc demo  
      [spring-boot-webflux-swagger](https://github.com/Even521/spring-boot-sample/tree/master/spring-boot-demo/reactive/spring-boot-webflux-swagger) webflux swagger3.0 demo  
      [spring-boot-webflux-webclient](https://github.com/Even521/spring-boot-sample/tree/master/spring-boot-demo/reactive/spring-boot-webflux-webclient) webflux webclient demo  
-     [spring-boot-webflux-environment-configuration](https://github.com/Even521/spring-boot-sample/tree/master/spring-boot-demo/reactive/environment-configuration) spring boot version 2.4 多环境分组demo              
+     [spring-boot-webflux-environment-configuration](https://github.com/Even521/spring-boot-sample/tree/master/spring-boot-demo/reactive/spring-boot-webflux-environment-configuration) spring boot version 2.4 多环境分组demo              
 - ### servlet-spring boot  based on spring mvc servlet3.0 demo 
 - ### rsocket-spring boot rsocket demo
         
