@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: dev
+    group:
+     dev: redis-db
+
+---
+spring:
+  config:
+    activate:
+      on-profile: redis-db
+  redis:
+    host: 192.168.0.10
+    port: 6379
+    password: xiangxue@1qazXSW@
+    timeout: 5000
+    database: 1
