@@ -21,7 +21,7 @@
         <java.version>1.8</java.version>
         <mybatisplus.version>3.0.7</mybatisplus.version>
         <alibaba.druid>1.1.10</alibaba.druid>
-        <alibaba.fastjson>1.2.47</alibaba.fastjson>
+        <alibaba.fastjson>1.2.83</alibaba.fastjson>
 
     </properties>
 
